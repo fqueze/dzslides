@@ -9,7 +9,7 @@
 
 <section>
     <!-- This is the first slide -->
-    <h1>WebRTC: Real Time Web Communication</h1>
+    <h1>WebRTC:<br><span style="font-size:smaller">Real Time Web Communication</span><br><span style="font-size: 30px;">FOSDEM 2013</span></h1>
     <footer>by Florian Quèze and Timothy B. Terriberry</footer>
 </section>
 
@@ -32,6 +32,217 @@
       <li>Media encoding and playback</li>
     </ul>
 </section>
+
+<section>
+  <h3>getUserMedia</h3>
+<p>Web camera and microphone access with a simple API that integrates
+well with other web elements like &lt;audio&gt; and &lt;video&gt;</p>
+</section>
+
+<section>
+<p><pre style='color:#000000;background:#ffffff;font-size: smaller;margin-top: 50px'><span style='color:#004a43; '>&lt;!DOCTYPE html></span>
+<span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>html</span><span style='color:#a65700; '>></span>
+ <span style='color:#a65700; '>&lt;</span><span style='color:#5f5035; '>video</span><span style='color:#274796; '> </span><span style='color:#074726; '>id</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"video"</span><span style='color:#a65700; '>/></span>
+ <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>script</span><span style='color:#a65700; '>></span>
+   navigator<span style='color:#808030; '>.</span>mozGetUserMedia<span style='color:#808030; '>(</span>
+     <span style='color:#800080; '>{</span>video<span style='color:#800080; '>:</span> <span style='color:#0f4d75; '>true</span><span style='color:#800080; '>}</span><span style='color:#808030; '>,</span>
+     <span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>stream<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+       <span style='color:#800000; font-weight:bold; '>var</span> video <span style='color:#808030; '>=</span>
+         document<span style='color:#808030; '>.</span>getElementById<span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>video</span><span style='color:#800000; '>"</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+       video<span style='color:#808030; '>.</span>mozSrcObject <span style='color:#808030; '>=</span> stream<span style='color:#800080; '>;</span>
+       video<span style='color:#808030; '>.</span>play<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+     <span style='color:#800080; '>}</span><span style='color:#808030; '>,</span>
+     <span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>err<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span> alert<span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>error: </span><span style='color:#800000; '>"</span> <span style='color:#808030; '>+</span> err<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#800080; '>}</span>
+   <span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+ <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>script</span><span style='color:#a65700; '>></span>
+<span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>html</span><span style='color:#a65700; '>></span>
+</pre></p>
+</section>
+<!--
+<!DOCTYPE html>
+<html>
+ <video id="video"/>
+ <script>
+   navigator.mozGetUserMedia(
+     {video: true},
+     function(stream) {
+       var video = document.getElementById("video");
+       video.mozSrcObject = stream;
+       video.play();
+     },
+     function(err) { alert("error: " + err); }
+   );
+ </script>
+</html>
+-->
+
+<section>
+ <button onclick="
+   window.video = document.getElementById('video');
+   navigator.mozGetUserMedia(
+     {video: true},
+     function(stream) {
+       video.mozSrcObject = stream;
+       video.play();
+     },
+     function(err) { alert('error: ' + err); }
+   );
+   this.textContent = 'Stop';
+   this.setAttribute('onclick', 'window.video.mozSrcObject.stop(); window.video.mozSrcObject = null');
+">Get video</button>
+
+ <video style="height: 500px" id="video"/>
+</section>
+
+<section>
+<h3>PeerConnection</h3>
+<ul class="incremental">
+ <li>Allows creating a <b>peer to peer channel</b> for audio, video and data</li>
+ <li>High-level API</li>
+ <li>The details of connectivity checks and NAT traversal are (mostly!) hidden.</li>
+ <li>Fully encrypted</li>
+</ul>
+</section>
+
+<section>
+<pre style='color:#000000;background:#ffffff;font-size: smaller;margin-top: 50px'><span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>script</span><span style='color:#a65700; '>></span>
+ <span style='color:#800000; font-weight:bold; '>function</span> error<span style='color:#808030; '>(</span>e<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span> alert<span style='color:#808030; '>(</span>e<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#800080; '>}</span>
+ <span style='color:#800000; font-weight:bold; '>var</span> pc <span style='color:#808030; '>=</span> <span style='color:#800000; font-weight:bold; '>new</span> mozRTCPeerConnection<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+ pc<span style='color:#808030; '>.</span>addStream<span style='color:#808030; '>(</span>videoStream<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+ pc<span style='color:#808030; '>.</span>onremotestreamadded <span style='color:#808030; '>=</span> <span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>stream<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+   document<span style='color:#808030; '>.</span>getElementById<span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>remoteVideo</span><span style='color:#800000; '>"</span><span style='color:#808030; '>)</span>
+           <span style='color:#808030; '>.</span>mozSrcObject <span style='color:#808030; '>=</span> stream<span style='color:#800080; '>;</span>
+ <span style='color:#800080; '>}</span><span style='color:#800080; '>;</span>
+
+ pc<span style='color:#808030; '>.</span>createOffer<span style='color:#808030; '>(</span><span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>offer<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+   pc<span style='color:#808030; '>.</span>setLocalDescription<span style='color:#808030; '>(</span>offer<span style='color:#808030; '>,</span> <span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span><span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+     $<span style='color:#808030; '>.</span>post<span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>/offer</span><span style='color:#800000; '>"</span><span style='color:#808030; '>,</span> offer<span style='color:#808030; '>,</span> <span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>answer<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+       pc<span style='color:#808030; '>.</span>setRemoteDescription<span style='color:#808030; '>(</span>answer<span style='color:#808030; '>,</span>
+                               <span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span><span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+         alert<span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>Call established!</span><span style='color:#800000; '>"</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+       <span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+     <span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+   <span style='color:#800080; '>}</span><span style='color:#808030; '>,</span> error<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+ <span style='color:#800080; '>}</span><span style='color:#808030; '>,</span> error<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+<span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>script</span><span style='color:#a65700; '>></span>
+</pre>
+</section>
+<!--
+<script>
+ function error(e) { alert(e); }
+ var pc = new mozRTCPeerConnection();
+ pc.addStream(videoStream);
+ pc.onremotestreamadded = function(stream) {
+   document.getElementById("remoteVideo")
+           .mozSrcObject = stream;
+ };
+
+ pc.createOffer(function(offer) {
+   pc.setLocalDescription(offer, function() {
+     $.post("/offer", offer, function(answer) {
+       pc.setRemoteDescription(answer,
+                               function() {
+         alert("Call established!");
+       });
+     });
+   }, error);
+ }, error);
+</script>
+-->
+
+
+<section>
+<h3>data channels</h3>
+<ul>
+ <li>Like WebSockets, but directly from one peer to another!</li>
+ <li>Both reliable (like TCP) and unreliable (like UDP) modes available</li>
+</ul>
+</section>
+
+
+<section>
+<pre style='color:#000000;background:#ffffff;font-size: smaller;margin-top: 50px'><span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>script</span><span style='color:#a65700; '>></span>
+  <span style='color:#800000; font-weight:bold; '>function</span> error<span style='color:#808030; '>(</span>e<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span> alert<span style='color:#808030; '>(</span>e<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#800080; '>}</span>
+  <span style='color:#800000; font-weight:bold; '>var</span> pc <span style='color:#808030; '>=</span> <span style='color:#800000; font-weight:bold; '>new</span> mozRTCPeerConnection<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+  <span style='color:#696969; '>// ...</span>
+  pc<span style='color:#808030; '>.</span>onDataChannel <span style='color:#808030; '>=</span> <span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>channel<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+    channel<span style='color:#808030; '>.</span>onmessage <span style='color:#808030; '>=</span> <span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>e<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+      <span style='color:#696969; '>// e.data instanceof Blob, DOMString, ...</span>
+    <span style='color:#800080; '>}</span><span style='color:#800080; '>;</span>
+  <span style='color:#800080; '>}</span><span style='color:#800080; '>;</span>
+  pc<span style='color:#808030; '>.</span>onConnection <span style='color:#808030; '>=</span> <span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span><span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+    <span style='color:#800000; font-weight:bold; '>var</span> reliable <span style='color:#808030; '>=</span>
+      pc<span style='color:#808030; '>.</span>createDataChannel<span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>hello world</span><span style='color:#800000; '>"</span><span style='color:#808030; '>,</span> <span style='color:#800080; '>{</span><span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+    <span style='color:#800000; font-weight:bold; '>var</span> unreliable <span style='color:#808030; '>=</span>
+      pc<span style='color:#808030; '>.</span>createDataChannel<span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>hello world</span><span style='color:#800000; '>"</span><span style='color:#808030; '>,</span>
+                           <span style='color:#800080; '>{</span>reliable<span style='color:#800080; '>:</span><span style='color:#0f4d75; '>false</span><span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+    reliable<span style='color:#808030; '>.</span>send<span style='color:#808030; '>(</span><span style='color:#808030; '>.</span><span style='color:#808030; '>.</span><span style='color:#808030; '>.</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+    <span style='color:#696969; '>// ...</span>
+  <span style='color:#800080; '>}</span><span style='color:#800080; '>;</span>
+<span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>script</span><span style='color:#a65700; '>></span>
+</pre>
+</section>
+<!--
+<script>
+  function error(e) { alert(e); }
+  var pc = new mozRTCPeerConnection();
+  // ...
+  pc.onDataChannel = function(channel) {
+    channel.onmessage = function(e) {
+      // e.data instanceof Blob, DOMString, ...
+    };
+  };
+  pc.onConnection = function() {
+    var reliable =
+      pc.createDataChannel("hello world", {});
+    var unreliable =
+      pc.createDataChannel("hello world",
+                           {reliable:false});
+    reliable.send(...);
+    // ...
+  };
+</script>
+-->
+
+<section>
+<h3>Media</h3>
+<ul>
+<li>VP8 for Video, Opus for Audio, just like &lt;audio&gt; &amp; &lt;video&gt;</li>
+<li>Opus - high quality audio codec that's great for realtime speech, music, ...
+<li>Don't worry about encoding or decoding, PeerConnection will select the most appropriate codec usable on both ends</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Demo</h2>
+</section>
+
+<section>
+<h3>Availability</h3>
+<p>...</p>
+
+</section>
+
+<section>
+<h3>Your turn!</h3>
+<p>Write great demos using getUserMedia and/or PeerConnection...</p>
+<p>... and please report bugs!</p>
+</section>
+
+
+<section>
+<h3>Questions</h3>
+
+<p>irc.mozilla.org#media</p>
+<p>dev-media@lists.mozilla.org</p>
+</section>
+
+<section>
+<h2>Thanks!</h2>
+</section>
+
+
 
 <!--section>
   <q>Soothe us with sweet lies. Is that a cooking show? No! I want to
@@ -210,7 +421,7 @@
 
       opacity: 0.8;
   }
-  .incremental > *[aria-selected] { font-size: 110% !important; opacity: 1; }
+  .incremental > *[aria-selected] { /*font-size: 110% !important;*/ opacity: 1; }
   .incremental > *[aria-selected] ~ * { opacity: 0.1; }
 
 </style>
