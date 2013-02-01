@@ -1,153 +1,180 @@
 <!DOCTYPE html>
 
 <meta charset="utf-8">
-<title>The Title Of Your Presentation</title>
+<link rel="shortcut icon" type="image/ico" href="favicon.ico">
+<title>WebRTC: Real Time Web Communcation</title>
 
 <!-- Your Slides -->
 <!-- One section is one slide -->
 
 <section>
     <!-- This is the first slide -->
-    <h1>My Presentation</h1>
-    <footer>by John Doe</footer>
+    <h1>WebRTC: Real Time Web Communication</h1>
+    <footer>by Florian Quèze and Timothy B. Terriberry</footer>
+</section>
+
+<!--section>
+    <h2>Part one</h2>
+</section-->
+
+<section>
+    <h3>What?</h3>
+    <p>A set of technologies to enable real time communication in web pages
+    through a <em><b>simple JavaScript API</b></em></p>
 </section>
 
 <section>
-    <p>Some random text: But I've never been to the moon! You can see how I lived before I met you. Also Zoidberg.
-    I could if you hadn't turned on the light and shut off my stereo.</p>
-</section>
-
-<section>
-    <h3>An incremental list</h3>
+    <h3>How?</h3>
+    <p>You need three things for this to work:</p>
     <ul class="incremental">
-      <li>Item 1
-      <li>Item 2
-      <li>Item 3
+      <li>Access to the webcam &amp; microphone</li>
+      <li>Peer to peer networking</li>
+      <li>Media encoding and playback</li>
     </ul>
-    <div role="note">Some notes. They are only visible using onstage shell.</div>
 </section>
 
-<section>
-  <blockquote>
-    Who's brave enough to fly into something we all keep calling a death sphere?
-  </blockquote>
-  <details>
-    <p>In the onstage shell, notes scroll rather than overflow:</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac dui eu est feugiat lacinia sit amet nec leo. Mauris eu ipsum leo. Nulla mi odio, cursus sed sollicitudin non, fringilla id magna. Suspendisse sit amet posuere elit. Maecenas iaculis, turpis a placerat imperdiet, libero lorem feugiat nisi, nec tincidunt diam nibh sit amet massa. Vestibulum quis adipiscing tellus. Maecenas sollicitudin sodales pulvinar. Donec dui ipsum, bibendum facilisis consequat interdum, tempus ut mauris. Aliquam ut dolor nec odio scelerisque bibendum quis in neque. Aliquam dui dui, pulvinar quis fermentum quis, gravida eu augue. Nunc tristique dolor a urna pulvinar bibendum. Curabitur mollis cursus neque, in scelerisque metus porta non. Donec tempor enim in nibh vestibulum et convallis nisi malesuada. Duis ut lectus sed metus venenatis porttitor id pharetra quam. Suspendisse sapien turpis, ornare in molestie et, gravida eget turpis.
-    </p>
-  </details>
-</section>
+<!--section>
+  <q>Soothe us with sweet lies. Is that a cooking show? No! I want to
+    live! There are still too many things I don't own!</q>
+</section-->
 
-<section>
+<!--section>
     <h2>Part two</h2>
-</section>
+</section-->
 
-<section>
-    <figure> <!-- Figures are used to display images and videos fullpage -->
-      <img src="http://placekitten.com/g/800/600">
-      <figcaption>An image</figcaption>
-    </figure>
-    <div role="note">Kittens are so cute!</div>
-</section>
+<!--section>
+    <h3>An image</h3>
+    <img src="http://placekitten.com/g/800/600">
+</section-->
 
-<section>
-    <figure> <!-- Videos are automatically played -->
-      <video src="http://videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.webm" poster="http://www.mozilla.org/images/about/poster.jpg"></video>
-      <figcaption>A video</figcaption>
-    </figure>
-</section>
+<!--section>
+    <h3>A video</h3>
+    <video src="http://videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.webm"></video>
+</section-->
 
-<section>
+<!--section>
     <h2>End!</h2>
-</section>
+</section-->
 
-<!-- Your Style -->
-<!-- Define the style of your presentation -->
-
-<!-- Maybe a font from http://www.google.com/webfonts ? -->
-<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
+<!--link href="museosans.css" rel="stylesheet" type="text/css"-->
 
 <style>
-  html, .view body { background-color: black; counter-reset: slideidx; }
-  body, .view section { background-color: white; border-radius: 12px }
-  /* A section is a slide. It's size is 800x600, and this will never change */
-  section, .view head > title {
-      /* The font from Google */
-      font-family: 'Oswald', arial, serif;
-      font-size: 30px;
+  html { background-color: black; }
+  body { background-color: white; }
+
+  body {
+    font-family: MuseoSans-500, arial, serif;
+    font-size: 40px;
+    border-top: 2px solid #676767;
+    background: url(background.png) 0 0 repeat-x, #fff url(logo-only.png) bottom right no-repeat;
   }
 
-  .view section:after {
-    counter-increment: slideidx;
-    content: counter(slideidx, decimal-leading-zero);
-    position: absolute; bottom: -80px; right: 100px;
-    color: white;
-  }
-
-  .view head > title {
-    color: white;
-    text-align: center;
-    margin: 1em 0 1em 0;
+  section > * {
+    margin-left: 1.75em;
   }
 
   h1, h2 {
-    margin-top: 200px;
+    margin-top: 150px;
     text-align: center;
     font-size: 80px;
+    margin-left: auto;
   }
+
   h3 {
-    margin: 100px 0 50px 100px;
+    margin: 50px 0 50px 50px;
+  }
+
+  h4, h5, h6 {
+    margin-top: 0.4em;
+  }
+
+  h5.sumo {
+    color: #888;
+  }
+
+  h5.sumo > span {
+    color: #000;
+  }
+
+  a {
+    font-size: 75%;
+    color: blue !important;
+  }
+
+  h5 {
+    margin-left: 1em;
+  }
+
+  h6 {
+    margin-left: 1.5em;
+  }
+
+  a.mozilla {
+    position: relative;
+    float: right;
+    display: block;
+    height: 49px;
+    width: 118px;
+    background: url(mozilla-tab.png) 100% 0 no-repeat;
+    text-indent: -200px;
+    overflow: hidden;
+    margin-right: 20px;
+    top: -1px;
+    z-index: 1;
+  }
+
+  .sumo-developers-screenshot {
+    width: 646px !important;
+    height: 585px !important;
+    right: 70px;
+    top: 10px;
   }
 
   ul {
-      margin: 50px 200px;
+    margin-left: 2.5em;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    width: 700px;
   }
 
-  p {
-    margin: 75px;
-    font-size: 50px;
-  }
-
-  blockquote {
-    height: 100%;
-    background-color: black;
-    color: white;
+  q {
+    display: inline-block;
+    width: 700px;
+    height: 600px;
+    color: black;
     font-size: 60px;
     padding: 50px;
-  }
-  blockquote:before {
-    content: open-quote;
-  }
-  blockquote:after {
-    content: close-quote;
+    margin-left: 0.5em;
   }
 
-  /* Figures are displayed full-page, with the caption
-     on top of the image/video */
-  figure {
-    background-color: black;
-    width: 100%;
-    height: 100%;
-  }
-  figure > * {
+  img, video {
+    width: 750px;
+    height: 550px;
     position: absolute;
-  }
-  figure > img, figure > video {
-    width: 100%; height: 100%;
-  }
-  figcaption {
-    margin: 70px;
-    font-size: 50px;
+    top: 50px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 0;
   }
 
   footer {
     position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding: 40px;
-    text-align: right;
-    background-color: #F3F4F8;
-    border-top: 1px solid #CCC;
+    bottom: 10px;
+    left: 10px;
+    font-size: 50%;
+    font-style: italic;
+  }
+
+  .incremental > li {
+    font-size: 40px;
+  }
+
+  .incremental.small > li {
+    font-size: 32px;
+  }
+
+  .incremental.tiny > li {
+    font-size: 22px;
   }
 
   /* Transition effect */
@@ -156,47 +183,66 @@
      https://developer.mozilla.org/en/CSS/CSS_transitions
      How to use CSS3 Transitions: */
   section {
-    -moz-transition: left 400ms linear 0s;
-    -webkit-transition: left 400ms linear 0s;
-    -ms-transition: left 400ms linear 0s;
-    transition: left 400ms linear 0s;
-  }
-  .view section {
-    -moz-transition: none;
-    -webkit-transition: none;
-    -ms-transition: none;
-    transition: none;
-  }
-
-  .view section[aria-selected] {
-    border: 5px red solid;
+      -moz-transition: opacity 400ms linear 0s;
+      -webkit-transition: left 400ms linear 0s;
+      -ms-transition: left 400ms linear 0s;
+      transition: left 400ms linear 0s;
   }
 
   /* Before */
-  section { left: -150%; }
+  section { opacity: 0; }
   /* Now */
-  section[aria-selected] { left: 0; }
+  section[aria-selected] { opacity: 1; }
   /* After */
-  section[aria-selected] ~ section { left: +150%; }
+  section[aria-selected] ~ section { opacity: 0; }
 
-  /* Incremental elements */
+  /* Increment with lists */
+  .incremental > * {
+      -moz-transition: opacity 300ms linear 0s;
+      -webkit-transition: opacity 300ms linear 0s;
+      -ms-transition: opacity 300ms linear 0s;
+      transition: opacity 300ms linear 0s;
 
-  /* By default, visible */
-  .incremental > * { opacity: 1; }
+      -moz-transition: font-size 150ms linear 0s;
+      -webkit-transition: font-size 150ms linear 0s;
+      -ms-transition: font-size 150ms linear 0s;
+      transition: font-size 150ms linear 0s;
 
-  /* The current item */
-  .incremental > *[aria-selected] { opacity: 1; }
-
-  /* The items to-be-selected */
-  .incremental > *[aria-selected] ~ * { opacity: 0; }
-
-  /* The progressbar, at the bottom of the slides, show the global
-     progress of the presentation. */
-  #progress-bar {
-    height: 2px;
-    background: #AAA;
+      opacity: 0.8;
   }
+  .incremental > *[aria-selected] { font-size: 110% !important; opacity: 1; }
+  .incremental > *[aria-selected] ~ * { opacity: 0.1; }
+
 </style>
+
+<script>
+  var slides = document.getElementsByTagName("section");
+  for (var i = 0; i < slides.length; ++i) {
+
+      // Here we add a generic footer text to all slides,
+      // unless they already have a footer text
+      var footer = slides[i].querySelector("footer");
+      if (footer === null) {
+          footer = document.createElement("footer");
+          slides[i].appendChild(footer);
+          footer.setAttribute("innerHTML", "Generic footer for all slides, override with a &lt;footer&gt; tag.");
+      }
+  }
+
+  // Add the Mozilla tab
+  var body = document.querySelector("body");
+  var mozillaTab = body.querySelector(".mozilla");
+  var firstElem = body.querySelector("*");
+
+  if (mozillaTab === null) {
+      mozillaTab = document.createElement("a");
+      body.insertBefore(mozillaTab, firstElem);
+  }
+
+  mozillaTab.setAttribute("href", "https://www.mozilla.org");
+  mozillaTab.setAttribute("class", "mozilla");
+  mozillaTab.setAttribute("innerHTML", "visit <span>mozilla</span>");
+</script>
 
 <!-- {{{{ dzslides core
 #
