@@ -134,11 +134,6 @@
  <span style='color:#800000; font-weight:bold; '>function</span> error<span style='color:#808030; '>(</span>e<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span> alert<span style='color:#808030; '>(</span>e<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#800080; '>}</span>
  <span style='color:#800000; font-weight:bold; '>var</span> pc <span style='color:#808030; '>=</span> <span style='color:#800000; font-weight:bold; '>new</span> mozRTCPeerConnection<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
  pc<span style='color:#808030; '>.</span>addStream<span style='color:#808030; '>(</span>videoStream<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
- pc<span style='color:#808030; '>.</span>onremotestreamadded <span style='color:#808030; '>=</span> <span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>stream<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
-   document<span style='color:#808030; '>.</span>getElementById<span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>remoteVideo</span><span style='color:#800000; '>"</span><span style='color:#808030; '>)</span>
-           <span style='color:#808030; '>.</span>mozSrcObject <span style='color:#808030; '>=</span> stream<span style='color:#800080; '>;</span>
- <span style='color:#800080; '>}</span><span style='color:#800080; '>;</span>
-
  pc<span style='color:#808030; '>.</span>createOffer<span style='color:#808030; '>(</span><span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>offer<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
    pc<span style='color:#808030; '>.</span>setLocalDescription<span style='color:#808030; '>(</span>offer<span style='color:#808030; '>,</span> <span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span><span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
      $<span style='color:#808030; '>.</span>post<span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>/offer</span><span style='color:#800000; '>"</span><span style='color:#808030; '>,</span> offer<span style='color:#808030; '>,</span> <span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>answer<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
@@ -149,6 +144,11 @@
      <span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
    <span style='color:#800080; '>}</span><span style='color:#808030; '>,</span> error<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
  <span style='color:#800080; '>}</span><span style='color:#808030; '>,</span> error<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+
+ pc<span style='color:#808030; '>.</span>onremotestreamadded <span style='color:#808030; '>=</span> <span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>stream<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+   document<span style='color:#808030; '>.</span>getElementById<span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>remoteVideo</span><span style='color:#800000; '>"</span><span style='color:#808030; '>)</span>
+           <span style='color:#808030; '>.</span>mozSrcObject <span style='color:#808030; '>=</span> stream<span style='color:#800080; '>;</span>
+ <span style='color:#800080; '>}</span><span style='color:#800080; '>;</span>
 <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>script</span><span style='color:#a65700; '>></span>
 </pre>
 </section>
@@ -157,11 +157,6 @@
  function error(e) { alert(e); }
  var pc = new mozRTCPeerConnection();
  pc.addStream(videoStream);
- pc.onremotestreamadded = function(stream) {
-   document.getElementById("remoteVideo")
-           .mozSrcObject = stream;
- };
-
  pc.createOffer(function(offer) {
    pc.setLocalDescription(offer, function() {
      $.post("/offer", offer, function(answer) {
@@ -172,6 +167,11 @@
      });
    }, error);
  }, error);
+
+ pc.onremotestreamadded = function(stream) {
+   document.getElementById("remoteVideo")
+           .mozSrcObject = stream;
+ };
 </script>
 -->
 
@@ -190,11 +190,6 @@
   <span style='color:#800000; font-weight:bold; '>function</span> error<span style='color:#808030; '>(</span>e<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span> alert<span style='color:#808030; '>(</span>e<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#800080; '>}</span>
   <span style='color:#800000; font-weight:bold; '>var</span> pc <span style='color:#808030; '>=</span> <span style='color:#800000; font-weight:bold; '>new</span> mozRTCPeerConnection<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
   <span style='color:#696969; '>// ...</span>
-  pc<span style='color:#808030; '>.</span>onDataChannel <span style='color:#808030; '>=</span> <span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>channel<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
-    channel<span style='color:#808030; '>.</span>onmessage <span style='color:#808030; '>=</span> <span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>e<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
-      <span style='color:#696969; '>// e.data instanceof Blob, DOMString, ...</span>
-    <span style='color:#800080; '>}</span><span style='color:#800080; '>;</span>
-  <span style='color:#800080; '>}</span><span style='color:#800080; '>;</span>
   pc<span style='color:#808030; '>.</span>onConnection <span style='color:#808030; '>=</span> <span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span><span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
     <span style='color:#800000; font-weight:bold; '>var</span> reliable <span style='color:#808030; '>=</span>
       pc<span style='color:#808030; '>.</span>createDataChannel<span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>hello world</span><span style='color:#800000; '>"</span><span style='color:#808030; '>,</span> <span style='color:#800080; '>{</span><span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
@@ -204,6 +199,11 @@
     reliable<span style='color:#808030; '>.</span>send<span style='color:#808030; '>(</span><span style='color:#808030; '>.</span><span style='color:#808030; '>.</span><span style='color:#808030; '>.</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
     <span style='color:#696969; '>// ...</span>
   <span style='color:#800080; '>}</span><span style='color:#800080; '>;</span>
+  pc<span style='color:#808030; '>.</span>onDataChannel <span style='color:#808030; '>=</span> <span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>channel<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+    channel<span style='color:#808030; '>.</span>onmessage <span style='color:#808030; '>=</span> <span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>e<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+      <span style='color:#696969; '>// e.data instanceof Blob, DOMString, ...</span>
+    <span style='color:#800080; '>}</span><span style='color:#800080; '>;</span>
+  <span style='color:#800080; '>}</span><span style='color:#800080; '>;</span>
 <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>script</span><span style='color:#a65700; '>></span>
 </pre>
 </section>
@@ -212,11 +212,6 @@
   function error(e) { alert(e); }
   var pc = new mozRTCPeerConnection();
   // ...
-  pc.onDataChannel = function(channel) {
-    channel.onmessage = function(e) {
-      // e.data instanceof Blob, DOMString, ...
-    };
-  };
   pc.onConnection = function() {
     var reliable =
       pc.createDataChannel("hello world", {});
@@ -225,6 +220,11 @@
                            {reliable:false});
     reliable.send(...);
     // ...
+  };
+  pc.onDataChannel = function(channel) {
+    channel.onmessage = function(e) {
+      // e.data instanceof Blob, DOMString, ...
+    };
   };
 </script>
 -->
