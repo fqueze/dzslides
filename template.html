@@ -9,7 +9,9 @@
 
 <section>
     <!-- This is the first slide -->
-    <h1>WebRTC:<br><span style="font-size:smaller">Real Time Web Communication</span><br><span style="font-size: 30px;">FOSDEM 2013</span></h1>
+    <h1>WebRTC</h1>
+    <h3>Real Time Web<br>Communication</h3>
+    <h4>FOSDEM 2013</h4>
     <footer>by Florian Quèze and Timothy B. Terriberry</footer>
 </section>
 
@@ -19,31 +21,42 @@
 
 <section>
     <h3>What?</h3>
-    <p>A set of technologies to enable real time communication in web pages
-    through a <em><b>simple JavaScript API</b></em></p>
+    <p>Technology that enables</p>
+    <p style="margin-left: 4em"><em>real time communication</em></p>
+    <p>in web pages through a</p>
+    <p style="margin-left: 4em"><b>simple JavaScript API</b></p>
 </section>
 
 <section>
     <h3>How?</h3>
     <p>You need three things for this to work:</p>
     <ul class="incremental">
-      <li>Access to the webcam &amp; microphone</li>
-      <li>Peer to peer networking</li>
-      <li>Media encoding and playback</li>
+      <li style="list-style-image: url(webcam.png)">Access to the webcam &amp; microphone</li>
+      <li style="list-style-image: url(p2p.png)">Peer to peer networking</li>
+      <li style="list-style-image: url(playback.png)">Media encoding and playback</li>
     </ul>
 </section>
 
 <section>
   <h3>getUserMedia</h3>
-<p>Web camera and microphone access with a simple API that integrates
-well with other web elements like &lt;audio&gt; and &lt;video&gt;</p>
+  <ul>
+  <li>Camera and microphone access</li>
+  </ul>
+  <ul>
+  <li>Using a simple JavaScript API</li>
+  </ul>
+  <ul>
+  <li>Integrates well with HTML5 tags
+  <ul style="margin-top: 0.2em">
+  <li style="margin-left: -1em">Like &lt;audio&gt; and &lt;video&gt;</li>
+  </ul></li>
 </section>
 
 <section>
-<p><pre style='color:#000000;background:#ffffff;font-size: smaller;margin-top: 50px'><span style='color:#004a43; '>&lt;!DOCTYPE html></span>
-<span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>html</span><span style='color:#a65700; '>></span>
- <span style='color:#a65700; '>&lt;</span><span style='color:#5f5035; '>video</span><span style='color:#274796; '> </span><span style='color:#074726; '>id</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"video"</span><span style='color:#a65700; '>/></span>
- <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>script</span><span style='color:#a65700; '>></span>
+<p><pre style='color:#000000;background:rgba(255,255,255,0.75);font-size: smaller;margin-top: 50px; margin-right: 19px'><span style='color:#004a43; '>&lt;!DOCTYPE html&gt;</span>
+<span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>html</span><span style='color:#a65700; '>&gt;</span>
+ <span style='color:#a65700; '>&lt;</span><span style='color:#5f5035; '>video</span><span style='color:#274796; '> </span><span style='color:#074726; '>id</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"video"</span><span style='color:#a65700; '>/&gt;</span>
+ <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>script</span><span style='color:#a65700; '>&gt;</span>
    navigator<span style='color:#808030; '>.</span>mozGetUserMedia<span style='color:#808030; '>(</span>
      <span style='color:#800080; '>{</span>video<span style='color:#800080; '>:</span> <span style='color:#0f4d75; '>true</span><span style='color:#800080; '>}</span><span style='color:#808030; '>,</span>
      <span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>stream<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
@@ -54,8 +67,8 @@ well with other web elements like &lt;audio&gt; and &lt;video&gt;</p>
      <span style='color:#800080; '>}</span><span style='color:#808030; '>,</span>
      <span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>err<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span> alert<span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>error: </span><span style='color:#800000; '>"</span> <span style='color:#808030; '>+</span> err<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#800080; '>}</span>
    <span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
- <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>script</span><span style='color:#a65700; '>></span>
-<span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>html</span><span style='color:#a65700; '>></span>
+ <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>script</span><span style='color:#a65700; '>&gt;</span>
+<span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>html</span><span style='color:#a65700; '>&gt;</span>
 </pre></p>
 </section>
 <!--
@@ -77,7 +90,12 @@ well with other web elements like &lt;audio&gt; and &lt;video&gt;</p>
 -->
 
 <section>
- <button onclick="
+ <div align="center">
+ <button style="
+    -moz-transform: scale(2.0);
+    -webkit-transform: scale(2.0);
+    margin-top: 2em"
+  onclick="
    window.video = document.getElementById('video');
    navigator.mozGetUserMedia(
      {video: true},
@@ -89,23 +107,30 @@ well with other web elements like &lt;audio&gt; and &lt;video&gt;</p>
    );
    this.textContent = 'Stop';
    this.setAttribute('onclick', 'window.video.mozSrcObject.stop(); window.video.mozSrcObject = null');
-">Get video</button>
+">Get video</button></div>
 
- <video style="height: 500px" id="video"/>
+ <video style="
+     width: 640px;
+     height: 480px;
+     position: absolute;
+     top: 75px;
+     right: 75px;
+   " id="video"/>
 </section>
 
 <section>
 <h3>PeerConnection</h3>
 <ul class="incremental">
- <li>Allows creating a <b>peer to peer channel</b> for audio, video and data</li>
- <li>High-level API</li>
- <li>The details of connectivity checks and NAT traversal are (mostly!) hidden.</li>
+ <li>A <b>peer to peer channel</b> for<ul style="margin-top: 0.2em;margin-bottom: 0.1em">
+  <li style="margin-left: -1em">audio, video, and data</li></ul></li>
  <li>Fully encrypted</li>
+ <li>High-level API</li>
+ <li>Details of connectivity checks and NAT traversal hidden (mostly!)</li>
 </ul>
 </section>
 
 <section>
-<pre style='color:#000000;background:#ffffff;font-size: smaller;margin-top: 50px'><span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>script</span><span style='color:#a65700; '>></span>
+<pre style='color:#000000;background:rgba(255,255,255,0.75);font-size: 22px;margin-top: 50px;margin-right: 40px'><span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>script</span><span style='color:#a65700; '>></span>
  <span style='color:#800000; font-weight:bold; '>function</span> error<span style='color:#808030; '>(</span>e<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span> alert<span style='color:#808030; '>(</span>e<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#800080; '>}</span>
  <span style='color:#800000; font-weight:bold; '>var</span> pc <span style='color:#808030; '>=</span> <span style='color:#800000; font-weight:bold; '>new</span> mozRTCPeerConnection<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
  pc<span style='color:#808030; '>.</span>addStream<span style='color:#808030; '>(</span>videoStream<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
@@ -152,7 +177,7 @@ well with other web elements like &lt;audio&gt; and &lt;video&gt;</p>
 
 
 <section>
-<h3>data channels</h3>
+<h3>Data Channels</h3>
 <ul>
  <li>Like WebSockets, but directly from one peer to another!</li>
  <li>Both reliable (like TCP) and unreliable (like UDP) modes available</li>
@@ -161,7 +186,7 @@ well with other web elements like &lt;audio&gt; and &lt;video&gt;</p>
 
 
 <section>
-<pre style='color:#000000;background:#ffffff;font-size: smaller;margin-top: 50px'><span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>script</span><span style='color:#a65700; '>></span>
+<pre style='color:#000000;background:rgba(255,255,255,0.75);font-size: 23px;margin-top: 50px;margin-right: 40px'><span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>script</span><span style='color:#a65700; '>></span>
   <span style='color:#800000; font-weight:bold; '>function</span> error<span style='color:#808030; '>(</span>e<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span> alert<span style='color:#808030; '>(</span>e<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#800080; '>}</span>
   <span style='color:#800000; font-weight:bold; '>var</span> pc <span style='color:#808030; '>=</span> <span style='color:#800000; font-weight:bold; '>new</span> mozRTCPeerConnection<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
   <span style='color:#696969; '>// ...</span>
@@ -205,11 +230,15 @@ well with other web elements like &lt;audio&gt; and &lt;video&gt;</p>
 -->
 
 <section>
-<h3>Media</h3>
+<h3>Codecs</h3>
 <ul>
-<li>VP8 for Video, Opus for Audio, just like &lt;audio&gt; &amp; &lt;video&gt;</li>
-<li>Opus - high quality audio codec that's great for realtime speech, music, ...
-<li>Don't worry about encoding or decoding, PeerConnection will select the most appropriate codec usable on both ends</li>
+<li>VP8 for Video</li>
+<li>Opus for Audio<ul style="margin-top: 0.2em;margin-bottom: 0.1em">
+ <li style="margin-left: -1em">High-quality, low-latency</li>
+ <li style="margin-left: -1em">Speech and music</li>
+</ul></li>
+<li>Don't worry about encoding or decoding</li>
+<li>PeerConnection negotiates a codec usable on both ends</li>
 </ul>
 </section>
 
@@ -220,13 +249,32 @@ well with other web elements like &lt;audio&gt; and &lt;video&gt;</p>
 
 <section>
 <h3>Availability</h3>
-<p>...</p>
+<ul class="incremental">
+<li>getUserMedia preffed on in Aurora<ul style="margin-top: 0.2em;margin-bottom: 0.1em">
+ <li style="margin-left: -1em">Desktop release in early April</li>
+ <li style="margin-left: -1em">Still image support on Android, more coming</ul></li>
+<li>Preffing on PeerConnection this cycle<ul style="margin-top: 0.2em;margin-bottom: 0.1em">
+ <li style="margin-left: -1em">Desktop release in mid May</li>
+ <li style="margin-left: -1em">Patches for audio calls on Android</li>
+ <li style="margin-left: -1em">Video coming soon</li>
+</ul></li>
+<li>APIs prefixed until standards are done</li>
+</ul>
 
 </section>
 
 <section>
 <h3>Your turn!</h3>
-<p>Write great demos using getUserMedia and/or PeerConnection...</p>
+<p>Lots of ways to get hacking...</p>
+<ul style="margin-top: 0.5em">
+<li>Write great demos and apps</li>
+<li>Improve our implementation<ul style="margin-top: 0.2em">
+ <li style="margin-left: -1em">Bring DataChannel up to spec</li>
+ <li style="margin-left: -1em">Improve error reporting</li>
+ <li style="margin-left: -1em">Better ALSA/Pulse integration</li>
+ <li style="margin-left: -1em">Etc...</li>
+</ul></li>
+</ul>
 <p>... and please report bugs!</p>
 </section>
 
@@ -234,7 +282,7 @@ well with other web elements like &lt;audio&gt; and &lt;video&gt;</p>
 <section>
 <h3>Questions</h3>
 
-<p>irc.mozilla.org#media</p>
+<p>#media on irc.mozilla.org</p>
 <p>dev-media@lists.mozilla.org</p>
 </section>
 
@@ -424,6 +472,12 @@ well with other web elements like &lt;audio&gt; and &lt;video&gt;</p>
   .incremental > *[aria-selected] { /*font-size: 110% !important;*/ opacity: 1; }
   .incremental > *[aria-selected] ~ * { opacity: 0.1; }
 
+  /* The progressbar, at the bottom of the slides, show the global
+     progress of the presentation. */
+  #progress-bar {
+    height: 4px;
+    background: #DD4E29;
+  }
 </style>
 
 <script>
